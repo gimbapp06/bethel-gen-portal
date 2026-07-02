@@ -1,0 +1,320 @@
+/* ── Bethel Gen Portal – Global Styles ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Bethel brand colors extracted from bethelgen.com */
+  --bethel-navy:      #1A2B5F;   /* deep navy blue – primary */
+  --bethel-navy-dark: #0F1A3D;
+  --bethel-navy-mid:  #243570;
+  --bethel-gold:      #C8A937;   /* gold/yellow accent */
+  --bethel-gold-light:#E8C84A;
+  --bethel-gold-dark: #A88B28;
+  --bethel-red:       #C0392B;   /* danger / error */
+  --bethel-white:     #FFFFFF;
+  --bethel-off-white: #F7F8FC;
+  --bethel-light-bg:  #EEF1F8;
+  --bethel-border:    #D4D8E8;
+  --bethel-text:      #1C2340;
+  --bethel-text-muted:#6B7280;
+  --bethel-success:   #16A34A;
+  --bethel-warning:   #D97706;
+  --bethel-info:      #0284C7;
+
+  /* shadows */
+  --shadow-sm: 0 1px 3px rgba(26,43,95,0.08);
+  --shadow-md: 0 4px 12px rgba(26,43,95,0.12);
+  --shadow-lg: 0 8px 30px rgba(26,43,95,0.16);
+
+  /* radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* font */
+  --font-sans:  'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Merriweather', serif;
+}
+
+html { font-size: 15px; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bethel-off-white);
+  color: var(--bethel-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Utility classes ── */
+.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn-primary   { background: var(--bethel-navy); color: #fff; }
+.btn-primary:hover:not(:disabled)  { background: var(--bethel-navy-dark); }
+.btn-gold      { background: var(--bethel-gold); color: var(--bethel-navy-dark); }
+.btn-gold:hover:not(:disabled)     { background: var(--bethel-gold-light); }
+.btn-outline   { background: transparent; border: 1.5px solid var(--bethel-navy); color: var(--bethel-navy); }
+.btn-outline:hover:not(:disabled)  { background: var(--bethel-light-bg); }
+.btn-danger    { background: var(--bethel-red); color: #fff; }
+.btn-ghost     { background: transparent; color: var(--bethel-navy); }
+.btn-ghost:hover:not(:disabled)    { background: var(--bethel-light-bg); }
+.btn-sm  { padding: 7px 14px; font-size: 0.8rem; }
+.btn-lg  { padding: 14px 28px; font-size: 1rem; }
+.btn-icon { padding: 8px; border-radius: var(--radius-sm); }
+
+/* Form elements */
+.form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; }
+.form-label { font-size: 0.825rem; font-weight: 600; color: var(--bethel-text); }
+.form-label .required { color: var(--bethel-red); margin-left: 2px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--bethel-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--bethel-text);
+  background: #fff;
+  transition: border-color 0.15s;
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--bethel-navy);
+  box-shadow: 0 0 0 3px rgba(26,43,95,0.1);
+}
+.form-input.error { border-color: var(--bethel-red); }
+.form-error { font-size: 0.78rem; color: var(--bethel-red); display: flex; align-items: center; gap: 4px; }
+.input-wrapper { position: relative; }
+.input-icon-right { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--bethel-text-muted); }
+
+/* Cards */
+.card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--bethel-border);
+  box-shadow: var(--shadow-sm);
+}
+.card-body { padding: 20px 24px; }
+.card-header { padding: 16px 24px; border-bottom: 1px solid var(--bethel-border); display: flex; align-items: center; justify-content: space-between; }
+.card-title { font-size: 1rem; font-weight: 700; color: var(--bethel-navy); }
+
+/* Status badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge-draft         { background: #F1F5F9; color: #64748B; }
+.badge-submitted     { background: #DBEAFE; color: #1D4ED8; }
+.badge-under-review  { background: #FEF3C7; color: #92400E; }
+.badge-pending-docs  { background: #FDE8D0; color: #9A3412; }
+.badge-approved      { background: #DCFCE7; color: #15803D; }
+.badge-rejected      { background: #FEE2E2; color: #991B1B; }
+.badge-cancelled     { background: #F1F5F9; color: #64748B; }
+.badge-ai-reviewed   { background: #EDE9FE; color: #5B21B6; }
+.badge-needs-resubmit{ background: #FEF9C3; color: #713F12; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15,26,61,0.55);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; padding: 16px;
+  animation: fadeIn 0.18s ease;
+}
+.modal-box {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  width: 100%; max-width: 520px;
+  max-height: 90vh; overflow-y: auto;
+  animation: slideUp 0.22s ease;
+}
+.modal-header {
+  padding: 22px 28px 16px;
+  border-bottom: 1px solid var(--bethel-border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-header h2 { font-size: 1.1rem; font-weight: 700; color: var(--bethel-navy); }
+.modal-body { padding: 24px 28px; }
+.modal-footer { padding: 16px 28px; border-top: 1px solid var(--bethel-border); display: flex; gap: 10px; justify-content: flex-end; }
+
+/* Sidebar layout */
+.portal-layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; flex-shrink: 0;
+  background: var(--bethel-navy);
+  display: flex; flex-direction: column;
+  transition: width 0.25s ease;
+  position: fixed; top: 0; left: 0; height: 100vh;
+  z-index: 100; overflow: hidden;
+}
+.sidebar.collapsed { width: 68px; }
+.sidebar-logo { padding: 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 10px; }
+.sidebar-logo img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+.sidebar-logo .logo-text { color: #fff; font-weight: 800; font-size: 0.95rem; white-space: nowrap; transition: opacity 0.2s; }
+.sidebar.collapsed .logo-text { opacity: 0; width: 0; overflow: hidden; }
+.sidebar-nav { padding: 12px 8px; flex: 1; overflow-y: auto; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: var(--radius-md);
+  color: rgba(255,255,255,0.72); font-size: 0.875rem; font-weight: 500;
+  cursor: pointer; transition: all 0.15s; text-decoration: none;
+  white-space: nowrap; margin-bottom: 2px;
+}
+.nav-item:hover    { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-item.active   { background: var(--bethel-gold); color: var(--bethel-navy-dark); font-weight: 700; }
+.nav-item svg      { flex-shrink: 0; }
+.nav-label { transition: opacity 0.2s; }
+.sidebar.collapsed .nav-label { opacity: 0; width: 0; overflow: hidden; }
+.nav-section-title { padding: 12px 12px 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); text-transform: uppercase; white-space: nowrap; }
+.sidebar.collapsed .nav-section-title { opacity: 0; }
+
+.main-content { margin-left: 260px; flex: 1; transition: margin-left 0.25s ease; min-height: 100vh; display: flex; flex-direction: column; }
+.main-content.sidebar-collapsed { margin-left: 68px; }
+
+.topbar {
+  background: #fff; border-bottom: 1px solid var(--bethel-border);
+  padding: 0 24px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 90;
+  box-shadow: var(--shadow-sm);
+}
+.topbar-left  { display: flex; align-items: center; gap: 12px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.page-content { padding: 28px 28px; flex: 1; }
+
+/* User avatar */
+.avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bethel-navy); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; overflow: hidden;
+  flex-shrink: 0;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-lg { width: 48px; height: 48px; font-size: 1rem; }
+
+/* Notification badge */
+.notif-btn { position: relative; }
+.notif-dot {
+  position: absolute; top: -2px; right: -2px;
+  background: var(--bethel-red); color: #fff;
+  font-size: 0.65rem; font-weight: 700;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #fff;
+}
+
+/* Table */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+thead th { padding: 10px 14px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--bethel-text-muted); border-bottom: 1.5px solid var(--bethel-border); text-align: left; }
+tbody td { padding: 12px 14px; border-bottom: 1px solid var(--bethel-border); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--bethel-off-white); }
+
+/* Stats card */
+.stat-card { background: #fff; border-radius: var(--radius-lg); padding: 20px 22px; border: 1px solid var(--bethel-border); }
+.stat-card .stat-label { font-size: 0.78rem; font-weight: 600; color: var(--bethel-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.stat-card .stat-value { font-size: 2rem; font-weight: 800; color: var(--bethel-navy); line-height: 1.2; margin: 6px 0 2px; }
+.stat-card .stat-icon  { width: 42px; height: 42px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; }
+
+/* Priority colors */
+.priority-high   { color: #DC2626; }
+.priority-medium { color: #D97706; }
+.priority-low    { color: #16A34A; }
+.task-done { opacity: 0.55; text-decoration: line-through; }
+
+/* Animations */
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin    { to { transform: rotate(360deg); } }
+
+.spinner { animation: spin 0.7s linear infinite; }
+
+/* Floating message button */
+.float-msg-btn {
+  position: fixed; bottom: 28px; right: 28px;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: var(--bethel-gold); color: var(--bethel-navy-dark);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-lg); cursor: pointer; border: none;
+  transition: transform 0.18s, box-shadow 0.18s;
+  z-index: 200;
+}
+.float-msg-btn:hover { transform: scale(1.08); box-shadow: 0 12px 36px rgba(26,43,95,0.22); }
+
+/* Divider */
+.divider { height: 1px; background: var(--bethel-border); margin: 18px 0; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bethel-border); border-radius: 99px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.mobile-open { transform: translateX(0); }
+  .main-content { margin-left: 0 !important; }
+  .page-content { padding: 14px; }
+
+  /* Topbar: shrink logo, tighten spacing so nothing overflows */
+  .topbar { padding: 0 14px !important; }
+  .topbar-left { gap: 8px !important; }
+  .topbar-left img[alt="Bethel General Insurance"],
+  .topbar-left img[alt="Bethel"] { height: 34px !important; }
+  .topbar-left img[alt="Bethel General Insurance"] { max-width: 140px !important; }
+  .topbar-right { gap: 6px !important; }
+
+  /* Force fixed multi-column grids down to a single column on phones */
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="gridTemplateColumns: '1fr 1fr'"],
+  [style*="grid-template-columns: 1.4fr 1fr"],
+  [style*="grid-template-columns: 2fr 1fr 1fr 1fr"],
+  [style*="grid-template-columns: 300px 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Cards and stat tiles: comfortable padding on small screens */
+  .card-body { padding: 16px !important; }
+  .card-header { padding: 14px 16px !important; }
+
+  /* Tables scroll horizontally instead of overflowing the screen */
+  table { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+
+  /* Modals fit within the viewport */
+  .modal-box { width: calc(100vw - 28px) !important; max-width: calc(100vw - 28px) !important; max-height: 88vh !important; overflow-y: auto !important; }
+
+  /* Chat widget becomes near-fullscreen on phones */
+  .chat-widget { width: calc(100vw - 24px) !important; height: 70vh !important; right: 12px !important; bottom: 84px !important; }
+}
+
+@media (max-width: 420px) {
+  .page-content { padding: 10px; }
+  .topbar-left img[alt="Bethel General Insurance"] { max-width: 110px !important; }
+  .stat-value, .stat-number { font-size: 1.4rem !important; }
+}
