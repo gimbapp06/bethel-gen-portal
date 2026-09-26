@@ -13,8 +13,9 @@ class User extends Authenticatable
 
     protected $fillable = [
         'first_name', 'last_name', 'email', 'password',
-        'role', 'phone', 'address', 'birthdate', 'gender',
-        'photo', 'reset_token', 'reset_token_expires_at', 'is_active',
+        'role', 'created_by', 'phone', 'address', 'birthdate', 'gender',
+        'photo', 'reset_token', 'reset_token_expires_at', 'reset_token_attempts', 'is_active',
+        'last_login_at', 'last_login_ip', 'failed_login_attempts', 'locked_until',
     ];
 
     protected $hidden = [
@@ -27,6 +28,8 @@ class User extends Authenticatable
         'birthdate'               => 'date',
         'is_active'               => 'boolean',
         'password'                => 'hashed',
+        'last_login_at'           => 'datetime',
+        'locked_until'            => 'datetime',
     ];
 
     public function applications()
@@ -47,5 +50,11 @@ class User extends Authenticatable
     public function getFullNameAttribute(): string
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /** The admin who created this account (staff accounts only). */
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }
